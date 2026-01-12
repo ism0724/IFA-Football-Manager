@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirige vers /public si on accède à la racine
+    RewriteRule ^$ public/index.php [L]
+    
+    # Si le fichier demandé n'existe pas dans la racine, on cherche dans public
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Sécurité : Empêcher l'accès aux fichiers sensibles
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
