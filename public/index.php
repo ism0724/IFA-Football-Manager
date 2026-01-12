@@ -1,19 +1,30 @@
 <?php
-
-
 require_once '../app/Autoloader.php';
 \App\Autoloader::register();
 
-
-use App\Core\Config;
-use App\Core\Database;
 use App\Models\MembreModel;
+use App\Entities\Joueur;
+use App\Entities\Staff;
 
 try {
-    $model = new MembreModel();
-    $membres = $model->getAll();
-    
-    echo "L'autoloader fonctionne ! Nombre de membres : " . count($membres);
-} catch (\Exception $e) {
-    echo "Erreur : " . $e->getMessage();
+    $membreModel = new MembreModel();
+    $membres = $membreModel->getAll();
+
+    echo "<h1>Test du Système IFA Manager</h1>";
+
+    foreach ($membres as $membre) {
+        echo "<div>";
+        echo "<strong>Nom Complet :</strong> " . $membre->getNomComplet() . "<br>";
+        echo "<strong>Description :</strong> " . $membre->getDescription() . "<br>";
+        
+        if ($membre instanceof Joueur) {
+            echo "<em>Type détecté : Objet Joueur</em>";
+        } elseif ($membre instanceof Staff) {
+            echo "<em>Type détecté : Objet Staff</em>";
+        }
+        echo "</div><hr>";
+    }
+
+} catch (Exception $e) {
+    echo "Erreur lors du test : " . $e->getMessage();
 }
