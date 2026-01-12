@@ -1,15 +1,19 @@
 <?php
-require_once '../app/Core/Config.php';
-require_once '../app/Core/Database.php';
-require_once '../app/models/MembreModels.php';
 
+
+require_once '../app/Autoloader.php';
+\App\Autoloader::register();
+
+
+use App\Core\Config;
+use App\Core\Database;
 use App\Models\MembreModel;
 
-$model = new MembreModel();
-
-// Test 1 : Récupérer les membres
-$membres = $model->getAll();
-
-echo "<pre>";
-print_r($membres);
-echo "</pre>";
+try {
+    $model = new MembreModel();
+    $membres = $model->getAll();
+    
+    echo "L'autoloader fonctionne ! Nombre de membres : " . count($membres);
+} catch (\Exception $e) {
+    echo "Erreur : " . $e->getMessage();
+}
