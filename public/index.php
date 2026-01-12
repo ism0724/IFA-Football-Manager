@@ -1,12 +1,15 @@
 <?php
 require_once '../app/Core/Config.php';
 require_once '../app/Core/Database.php';
+require_once '../app/models/MembreModels.php';
 
-use App\Core\Database;
+use App\Models\MembreModel;
 
-try {
-    $db = Database::getConnection();
-    echo "Félicitations ! IFA Manager est connecté à MySQL via le fichier .env";
-} catch (Exception $e) {
-    echo "Échec : " . $e->getMessage();
-}
+$model = new MembreModel();
+
+// Test 1 : Récupérer les membres
+$membres = $model->getAll();
+
+echo "<pre>";
+print_r($membres);
+echo "</pre>";
