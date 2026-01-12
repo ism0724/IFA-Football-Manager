@@ -1,0 +1,3 @@
+# --- SÉCURITÉ (Le plus important) ---
+# On ignore le fichier qui contient les accès à la base de données
+.env

@@ -1,0 +1,20 @@
+<?php
+require_once '../app/Autoloader.php';
+\App\Autoloader::register();
+
+use App\Controllers\MembresController;
+
+
+$controller = new MembresController();
+$action = $_GET['action'] ?? 'index';
+// test
+
+switch ($action) {
+    case 'store':
+        $controller->store();
+        break;
+    case 'index':
+    default:
+        $controller->index();
+        break;
+}
