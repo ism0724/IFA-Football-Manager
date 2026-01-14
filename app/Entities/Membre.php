@@ -22,6 +22,7 @@ abstract class Membre {
     public function getNomComplet() {
         return strtoupper($this->nom) . " " . ucfirst($this->prenom);
     }
+
     public function getEmail() {
         return $this->email;
     }
